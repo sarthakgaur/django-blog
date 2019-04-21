@@ -1,0 +1,18 @@
+{% extends 'blogs/base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    {% if not user.is_authenticated %}
+        <form action="{% url 'users:login' %}" method="POST" class="form">
+            {% bootstrap_form form %}
+            {% csrf_token %}
+
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Login</button>
+            {% endbuttons %}
+            <input type="hidden" name="next" value="{% url 'users:login' %}">
+        </form>
+    {% else %}
+        <p>You are already logged in as {{ user.username }}.</p>
+    {% endif %}
+{% endblock content %}

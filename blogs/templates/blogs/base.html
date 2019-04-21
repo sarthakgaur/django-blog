@@ -1,0 +1,35 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Your Blogs</title>
+
+        {% bootstrap_css %}
+        {% bootstrap_javascript jquery='full' %}
+    </head>
+
+    <body>
+        <div class="container">
+            <a href="{% url 'blogs:home' %}">Home</a>
+            <a href="{% url 'blogs:posts' %}">Posts</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'users:logout' %}">Logout</a>
+                <p>Hi, {{ user.username }}.</p>
+            {% else %}
+                <a href="{% url 'users:register' %}">Register</a>
+                <a href="{% url 'users:login' %}">Login</a>
+            {% endif %}
+
+            <div class="container">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </body>
+</html>

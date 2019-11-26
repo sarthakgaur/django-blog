@@ -1,0 +1,1 @@
+A simple blog where you can create an account and make posts.
